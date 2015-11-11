@@ -14,7 +14,7 @@ var argv = optimist
     .options("o", {
       alias: "out",
       describe: "output GeoJSON directory",
-      default: process.cwd()
+      default: "/dev/stdout"
     })
     .options("precision", {
       describe: "number of digits after the decimal place to output",
@@ -61,5 +61,5 @@ for (var key in topology.objects) {
     }
   }).object(object);
 
-  rw.writeFileSync(path.join(argv.o, key + ".json"), JSON.stringify(object), "utf8");
+  rw.writeFileSync(argv.o, JSON.stringify(object), "utf8");
 }
